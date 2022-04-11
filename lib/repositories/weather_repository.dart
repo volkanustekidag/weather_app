@@ -16,9 +16,14 @@ class WeatherRepository {
   Future<List> getLocationIdFromCity(String city) async {
     final response = await this.httpClient.get(Uri.parse(locationUrl(city)));
     if (response.statusCode == 200) {
+      print("oldu");
       final cities = jsonDecode(response.body) as List;
+      print((cities.first['woeid']));
+      print((cities.first['title']));
+
       return cities;
-    } else {
+    } else if (response.statusCode != 200) {
+      print("olmadı");
       throw Exception('Error getting location id of :' + city);
     }
   }
@@ -27,14 +32,16 @@ class WeatherRepository {
     final response = await this.httpClient.get(Uri.parse(weatherUrl(location)));
     if (response.statusCode == 200) {
       final weatherJson = jsonDecode(response.body);
+      print("oldu");
       return Weather.fromJson(weatherJson);
     } else {
+      print("olmadı");
       throw Exception('Error getting location id of :' + location.toString());
     }
   }
 
   Future<Weather> getWeatherFromCity(String city) async {
     final List locationId = await getLocationIdFromCity(city);
-    return fetchWeather(locationId.first);
+    return fetchWeather(locationId.first['woeid']);
   }
 }
