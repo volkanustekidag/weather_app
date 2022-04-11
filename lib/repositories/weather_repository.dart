@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:weather_app/models/location.dart';
 import 'package:weather_app/models/weather.dart';
 
 const baseUrl = 'https://www.metaweather.com/';
@@ -13,15 +14,18 @@ class WeatherRepository {
 
   WeatherRepository({@required this.httpClient});
 
-  Future<List> getLocationIdFromCity(String city) async {
+  Future<List<Location>> getLocationIdFromCity(String city) async {
     final response = await this.httpClient.get(Uri.parse(locationUrl(city)));
+
+    List<Location> locations;
+
     if (response.statusCode == 200) {
       print("oldu");
       final cities = jsonDecode(response.body) as List;
-      print((cities.first['woeid']));
-      print((cities.first['title']));
 
-      return cities;
+      locations = List<Location>.from(cities.map((e) => Location.fromJson(e)));
+
+      return locations;
     } else if (response.statusCode != 200) {
       print("olmadı");
       throw Exception('Error getting location id of :' + city);
@@ -32,16 +36,14 @@ class WeatherRepository {
     final response = await this.httpClient.get(Uri.parse(weatherUrl(location)));
     if (response.statusCode == 200) {
       final weatherJson = jsonDecode(response.body);
-      print("oldu");
       return Weather.fromJson(weatherJson);
     } else {
-      print("olmadı");
       throw Exception('Error getting location id of :' + location.toString());
     }
   }
 
   Future<Weather> getWeatherFromCity(String city) async {
-    final List locationId = await getLocationIdFromCity(city);
-    return fetchWeather(locationId.first['woeid']);
+    List<Location> locations = await getLocationIdFromCity(city);
+    return fetchWeather(locations.first.woeid);
   }
 }
