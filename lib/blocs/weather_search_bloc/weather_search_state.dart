@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:weather_app/models/location.dart';
-import 'package:weather_app/models/weather.dart';
 
 abstract class WeatherSearchState extends Equatable {
   WeatherSearchState();
@@ -19,6 +18,15 @@ class WeatherSearchStateSucces extends WeatherSearchState {
   WeatherSearchStateSucces({this.list});
   @override
   List<Object> get props => [list];
+}
+
+class WeatherSearchStateSelectedCity extends WeatherSearchState {
+  final location;
+
+  WeatherSearchStateSelectedCity(this.location);
+
+  @override
+  List<Object> get props => [location];
 }
 
 class WeatherSearchStateFaiuler extends WeatherSearchState {}

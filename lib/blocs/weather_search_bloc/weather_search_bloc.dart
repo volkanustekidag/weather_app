@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:weather_app/blocs/weather_search_bloc/weather_search_event.dart';
 import 'package:weather_app/models/location.dart';
 import 'package:weather_app/repositories/weather_repository.dart';
@@ -8,7 +8,7 @@ import 'package:weather_app/blocs/weather_search_bloc/weather_search_state.dart'
 class WeatherSearchBloc extends Bloc<WeatherSearchEvent, WeatherSearchState> {
   final WeatherRepository weatherRepository;
 
-  WeatherSearchBloc(@required this.weatherRepository)
+  WeatherSearchBloc(this.weatherRepository)
       : super(WeatherSearchStateInitial()) {
     on<WeatherSearchEventRequest>((event, emit) async {
       emit(WeatherSearchStateLoading());
@@ -20,6 +20,10 @@ class WeatherSearchBloc extends Bloc<WeatherSearchEvent, WeatherSearchState> {
       } catch (e) {
         emit(WeatherSearchStateFaiuler());
       }
+    });
+
+    on<WeatherSearchEventSelectedCity>((event, emit) {
+      emit(WeatherSearchStateSelectedCity(event.location));
     });
   }
 }
