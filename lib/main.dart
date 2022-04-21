@@ -5,8 +5,7 @@ import 'package:weather_app/blocs/weather_bloc_observer.dart';
 import 'package:weather_app/blocs/weather_search_bloc/weather_search_bloc.dart';
 import 'package:weather_app/repositories/weather_repository.dart';
 import 'package:http/http.dart' as http;
-import 'package:weather_app/screens/city_search_screen.dart';
-import 'package:weather_app/screens/weather_screen.dart';
+import 'package:weather_app/screens/weather_screen/weather_screen.dart';
 
 void main() {
   final WeatherRepository weatherRepository =
