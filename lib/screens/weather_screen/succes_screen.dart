@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_app/blocs/weather_bloc/weather_event.dart';
+import 'package:weather_app/blocs/weather_search_bloc/weather_search_bloc.dart';
+import 'package:weather_app/blocs/weather_search_bloc/weather_search_state.dart';
+import 'package:weather_app/models/location.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_icons/weather_icons.dart';
 
@@ -14,8 +17,13 @@ class SuccesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        BlocProvider.of<WeatherBloc>(context)
-            .add(WeatherEventRefresh(woeid: location.woeid));
+        final state = BlocProvider.of<WeatherSearchBloc>(context).state;
+        if (state is WeatherSearchStateSelectedCity) {
+          Location location = state.location;
+          print(state.location);
+          BlocProvider.of<WeatherBloc>(context)
+              .add(WeatherEventRefresh(woeid: location.woeid));
+        }
       },
       child: SingleChildScrollView(
         physics: AlwaysScrollableScrollPhysics(),

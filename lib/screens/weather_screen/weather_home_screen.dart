@@ -24,9 +24,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.blue[100],
       appBar: appBarBuild(context),
-      body: Container(
-          child: BlocConsumer<WeatherBloc, WeatherState>(
-        listener: (context, state) {},
+      body: Container(child: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
           if (state is WeatherStateLoading) {
             return LoadingScreen();

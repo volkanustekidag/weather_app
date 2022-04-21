@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:weather_app/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_app/blocs/weather_bloc/weather_event.dart';
-import 'package:weather_app/screens/city_search_screen.dart';
+import 'package:weather_app/screens/city_search_screen/city_search_home_screen.dart';
 
 AppBar appBarBuild(BuildContext context) {
   return AppBar(
