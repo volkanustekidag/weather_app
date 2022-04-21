@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/blocs/weather_bloc.dart';
-import 'package:weather_app/events/weather_event.dart';
+import 'package:weather_app/blocs/weather_bloc/weather_bloc.dart';
+import 'package:weather_app/blocs/weather_bloc/weather_event.dart';
+import 'package:weather_app/blocs/weather_bloc/weather_state.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/screens/city_search_screen.dart';
-import 'package:weather_app/states/weather_state.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 class WeatherScreen extends StatefulWidget {

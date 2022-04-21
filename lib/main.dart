@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/blocs/weather_bloc.dart';
+import 'package:weather_app/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_app/blocs/weather_bloc_observer.dart';
-import 'package:weather_app/blocs/weather_search_bloc.dart';
+import 'package:weather_app/blocs/weather_search_bloc/weather_search_bloc.dart';
 import 'package:weather_app/repositories/weather_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/screens/city_search_screen.dart';
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          debugShowCheckedModeBanner:false,
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
             primarySwatch: Colors.blue,
