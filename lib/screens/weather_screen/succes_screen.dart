@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_app/blocs/weather_bloc/weather_event.dart';
 import 'package:weather_app/blocs/weather_search_bloc/weather_search_bloc.dart';
@@ -41,42 +42,39 @@ class SuccesScreen extends StatelessWidget {
                       style: TextStyle(color: Colors.white, fontSize: 35),
                     ),
                     Text(
-                      weather.consolidatedWeather[0].weatherStateName,
-                      style: TextStyle(color: Colors.white, fontSize: 15),
+                      DateFormat('EEEE').format(DateTime.parse(
+                          weather.consolidatedWeather[0].applicableDate)),
+                      style: TextStyle(color: Colors.white),
                     ),
                     _mapWeatherConditionToIcon(
                         weatherCondition:
                             weather.consolidatedWeather[0].weatherCondition),
-                    Column(
-                      children: [
-                        Text(
-                            "Humidity: " +
-                                weather.consolidatedWeather[0].humidity
-                                    .toString() +
-                                "%",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 15)),
-                        Text(
-                            "Pressure: " +
-                                weather.consolidatedWeather[0].airPressure
-                                    .toStringAsFixed(0) +
-                                "hPa",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 15)),
-                        Text(
-                            "Wind: " +
-                                weather.consolidatedWeather[0].windSpeed
-                                    .toStringAsFixed(0) +
-                                "km",
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 15)),
-                        Text(
-                          weather.consolidatedWeather[0].maxTemp
-                                  .toStringAsFixed(0) +
-                              "°",
-                          style: TextStyle(color: Colors.white, fontSize: 50),
-                        )
-                      ],
+                    Text(
+                      weather.consolidatedWeather[0].weatherStateName,
+                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                    Text(
+                        "Humidity: " +
+                            weather.consolidatedWeather[0].humidity.toString() +
+                            "%",
+                        style: TextStyle(color: Colors.white, fontSize: 15)),
+                    Text(
+                        "Pressure: " +
+                            weather.consolidatedWeather[0].airPressure
+                                .toStringAsFixed(0) +
+                            "hPa",
+                        style: TextStyle(color: Colors.white, fontSize: 15)),
+                    Text(
+                        "Wind: " +
+                            weather.consolidatedWeather[0].windSpeed
+                                .toStringAsFixed(0) +
+                            "km",
+                        style: TextStyle(color: Colors.white, fontSize: 15)),
+                    Text(
+                      weather.consolidatedWeather[0].maxTemp
+                              .toStringAsFixed(0) +
+                          "°",
+                      style: TextStyle(color: Colors.white, fontSize: 50),
                     )
                   ],
                 ),
@@ -87,23 +85,35 @@ class SuccesScreen extends StatelessWidget {
                   itemCount: weather.consolidatedWeather.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                          children: <Widget>[
-                            _mapWeatherConditionToIcon(
-                                weatherCondition: weather
+                    return GestureDetector(
+                      onTap: () {
+                        //BlocProvider.of<WeatherBloc>(context).add();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.4,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                DateFormat('EEE').format(DateTime.parse(weather
                                     .consolidatedWeather[index]
-                                    .weatherCondition),
-                            Text(weather.consolidatedWeather[index].maxTemp
-                                    .toStringAsFixed(0) +
-                                "°")
-                          ],
+                                    .applicableDate)),
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              _mapWeatherConditionToIcon(
+                                  weatherCondition: weather
+                                      .consolidatedWeather[index]
+                                      .weatherCondition),
+                              Text(weather.consolidatedWeather[index].maxTemp
+                                      .toStringAsFixed(0) +
+                                  "°")
+                            ],
+                          ),
                         ),
                       ),
                     );
