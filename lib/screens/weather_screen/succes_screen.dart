@@ -21,7 +21,6 @@ class SuccesScreen extends StatelessWidget {
         final state = BlocProvider.of<WeatherSearchBloc>(context).state;
         if (state is WeatherSearchStateSelectedCity) {
           Location location = state.location;
-          print(state.location);
           BlocProvider.of<WeatherBloc>(context)
               .add(WeatherEventRefresh(woeid: location.woeid));
         }

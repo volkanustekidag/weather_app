@@ -7,7 +7,6 @@ import 'package:weather_app/screens/city_search_screen/city_search_home_screen.d
 
 AppBar appBarBuild(BuildContext context) {
   return AppBar(
-    title: Text("Weather"),
     backgroundColor: Colors.transparent,
     elevation: 0,
     actions: [
