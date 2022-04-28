@@ -4,8 +4,10 @@ import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_state
 
 class WeatherSelectionBloc
     extends Bloc<WeatherSelectionEvent, WeatherSelectionState> {
-  WeatherSelectionBloc(WeatherSelectionState initialState)
-      : super(initialState) {
-    on<WeatherOnSelectedEvent>((event, emit) {});
+  WeatherSelectionBloc() : super(WeatherInitialState()) {
+    on<WeatherOnSelectedEvent>((event, emit) {
+      emit(WeatherOnSelectedState(
+          consolidatedWeather: event.consolidatedWeather));
+    });
   }
 }
