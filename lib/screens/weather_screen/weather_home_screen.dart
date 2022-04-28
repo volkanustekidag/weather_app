@@ -7,7 +7,7 @@ import 'package:weather_app/screens/weather_screen/widgets/app_bar.dart';
 import 'package:weather_app/screens/weather_screen/error_screen.dart';
 import 'package:weather_app/screens/weather_screen/initial_screen.dart';
 import 'package:weather_app/screens/weather_screen/loading_screen.dart';
-import 'package:weather_app/screens/weather_screen/succes_screen.dart';
+import 'package:weather_app/screens/weather_screen/succes_screen/succes_screen.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key key}) : super(key: key);
