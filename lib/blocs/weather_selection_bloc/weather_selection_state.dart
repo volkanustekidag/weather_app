@@ -3,12 +3,12 @@ import 'package:weather_app/models/weather.dart';
 
 abstract class WeatherSelectionState extends Equatable {}
 
-class WeatherInitialState extends Equatable {
+class WeatherInitialState extends WeatherSelectionState {
   @override
   List<Object> get props => [];
 }
 
-class WeatherOnSelectedState extends Equatable {
+class WeatherOnSelectedState extends WeatherSelectionState {
   final ConsolidatedWeather consolidatedWeather;
 
   WeatherOnSelectedState({this.consolidatedWeather});
