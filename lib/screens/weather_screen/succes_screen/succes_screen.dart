@@ -5,8 +5,12 @@ import 'package:weather_app/blocs/weather_bloc/weather_bloc.dart';
 import 'package:weather_app/blocs/weather_bloc/weather_event.dart';
 import 'package:weather_app/blocs/weather_search_bloc/weather_search_bloc.dart';
 import 'package:weather_app/blocs/weather_search_bloc/weather_search_state.dart';
+import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_bloc.dart';
+import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_event.dart';
+import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_state.dart';
 import 'package:weather_app/models/location.dart';
 import 'package:weather_app/models/weather.dart';
+import 'package:weather_app/screens/weather_screen/succes_screen/selected_weather.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 class SuccesScreen extends StatelessWidget {
@@ -31,52 +35,20 @@ class SuccesScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              Expanded(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      weather.title,
-                      style: TextStyle(color: Colors.white, fontSize: 35),
-                    ),
-                    Text(
-                      DateFormat('EEEE').format(DateTime.parse(
-                          weather.consolidatedWeather[0].applicableDate)),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    _mapWeatherConditionToIcon(
-                        weatherCondition:
-                            weather.consolidatedWeather[0].weatherCondition),
-                    Text(
-                      weather.consolidatedWeather[0].weatherStateName,
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    Text(
-                        "Humidity: " +
-                            weather.consolidatedWeather[0].humidity.toString() +
-                            "%",
-                        style: TextStyle(color: Colors.white, fontSize: 15)),
-                    Text(
-                        "Pressure: " +
-                            weather.consolidatedWeather[0].airPressure
-                                .toStringAsFixed(0) +
-                            "hPa",
-                        style: TextStyle(color: Colors.white, fontSize: 15)),
-                    Text(
-                        "Wind: " +
-                            weather.consolidatedWeather[0].windSpeed
-                                .toStringAsFixed(0) +
-                            "km",
-                        style: TextStyle(color: Colors.white, fontSize: 15)),
-                    Text(
-                      weather.consolidatedWeather[0].maxTemp
-                              .toStringAsFixed(0) +
-                          "°",
-                      style: TextStyle(color: Colors.white, fontSize: 50),
-                    )
-                  ],
-                ),
+              BlocBuilder<WeatherSelectionBloc, WeatherSelectionState>(
+                builder: (context, state) {
+                  if (state is WeatherOnSelectedState) {
+                    final consolidatedWeather = state.consolidatedWeather;
+                    return SelectedWeather(
+                      weather: consolidatedWeather,
+                      title: weather.title,
+                    );
+                  }
+                  return SelectedWeather(
+                    weather: weather.consolidatedWeather[0],
+                    title: weather.title,
+                  );
+                },
               ),
               Expanded(
                 flex: 1,
@@ -86,7 +58,10 @@ class SuccesScreen extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: () {
-                        //BlocProvider.of<WeatherBloc>(context).add();
+                        BlocProvider.of<WeatherSelectionBloc>(context).add(
+                            WeatherOnSelectedEvent(
+                                consolidatedWeather:
+                                    weather.consolidatedWeather[index]));
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -104,7 +79,7 @@ class SuccesScreen extends StatelessWidget {
                                     .applicableDate)),
                                 style: TextStyle(color: Colors.black),
                               ),
-                              _mapWeatherConditionToIcon(
+                              mapWeatherConditionToIcon(
                                   weatherCondition: weather
                                       .consolidatedWeather[index]
                                       .weatherCondition),
@@ -126,7 +101,7 @@ class SuccesScreen extends StatelessWidget {
     );
   }
 
-  BoxedIcon _mapWeatherConditionToIcon({WeatherCondition weatherCondition}) {
+  BoxedIcon mapWeatherConditionToIcon({WeatherCondition weatherCondition}) {
     switch (weatherCondition) {
       case WeatherCondition.clear:
       case WeatherCondition.lightCloud:
