@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/models/weather.dart';
-import 'package:weather_app/screens/weather_screen/widgets/condition_box_icon.dart';
+import 'package:weather_app/screens/weather_screen/widgets/weather_condition_svg.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 class SelectedWeather extends StatelessWidget {
@@ -28,12 +28,12 @@ class SelectedWeather extends StatelessWidget {
             weather.weatherStateName,
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
-          Text("Humidity: " + weather.humidity.toString() + "%",
+          /* Text("Humidity: " + weather.humidity.toString() + "%",
               style: TextStyle(color: Colors.white, fontSize: 15)),
           Text("Pressure: " + weather.airPressure.toStringAsFixed(0) + "hPa",
               style: TextStyle(color: Colors.white, fontSize: 15)),
           Text("Wind: " + weather.windSpeed.toStringAsFixed(0) + "km",
-              style: TextStyle(color: Colors.white, fontSize: 15)),
+              style: TextStyle(color: Colors.white, fontSize: 15)),*/
           Text(
             weather.maxTemp.toStringAsFixed(0) + "°",
             style: TextStyle(color: Colors.white, fontSize: 50),
