@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class InitialScreen extends StatelessWidget {
   const InitialScreen({
@@ -11,10 +12,14 @@ class InitialScreen extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(Icons.error, size: 40, color: Colors.white),
+        Icon(Icons.search_off, size: 40, color: Colors.white),
         Text(
-          "Select a city first.",
-          style: TextStyle(color: Colors.white, fontSize: 30),
+          "The city is not selected.",
+          style: TextStyle(color: Colors.white, fontSize: 25),
+        ),
+        Text(
+          "Please select a city.",
+          style: TextStyle(color: Colors.white, fontSize: 15),
         ),
       ],
     ));
