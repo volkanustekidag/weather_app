@@ -9,6 +9,10 @@ AppBar appBarBuild(BuildContext context) {
   return AppBar(
     backgroundColor: Colors.transparent,
     elevation: 0,
+    title: Text(
+      "Good Day!",
+      style: TextStyle(color: Colors.white),
+    ),
     actions: [
       IconButton(
           onPressed: () {
