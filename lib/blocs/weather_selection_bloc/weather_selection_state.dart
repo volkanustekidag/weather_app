@@ -16,3 +16,8 @@ class WeatherOnSelectedState extends WeatherSelectionState {
   @override
   List<Object> get props => [consolidatedWeather];
 }
+
+class WeatherOnSelectedIsEmptyState extends WeatherSelectionState {
+  @override
+  List<Object> get props => throw UnimplementedError();
+}

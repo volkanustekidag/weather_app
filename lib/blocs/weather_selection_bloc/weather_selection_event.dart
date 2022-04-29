@@ -11,3 +11,8 @@ class WeatherOnSelectedEvent extends WeatherSelectionEvent {
   @override
   List<Object> get props => [];
 }
+
+class WeatherOnSelectedIsEmptyEvent extends WeatherSelectionEvent {
+  @override
+  List<Object> get props => [];
+}

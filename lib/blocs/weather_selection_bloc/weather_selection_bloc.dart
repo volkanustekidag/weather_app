@@ -9,5 +9,9 @@ class WeatherSelectionBloc
       emit(WeatherOnSelectedState(
           consolidatedWeather: event.consolidatedWeather));
     });
+
+    on<WeatherOnSelectedIsEmptyEvent>((event, emit) {
+      emit(WeatherOnSelectedIsEmptyState());
+    });
   }
 }
