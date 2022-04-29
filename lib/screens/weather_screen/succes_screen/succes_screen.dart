@@ -11,6 +11,7 @@ import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_state
 import 'package:weather_app/models/location.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/screens/weather_screen/succes_screen/selected_weather.dart';
+import 'package:weather_app/screens/weather_screen/widgets/condition_box_icon.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 class SuccesScreen extends StatelessWidget {
@@ -98,62 +99,6 @@ class SuccesScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  BoxedIcon mapWeatherConditionToIcon({WeatherCondition weatherCondition}) {
-    switch (weatherCondition) {
-      case WeatherCondition.clear:
-      case WeatherCondition.lightCloud:
-        return BoxedIcon(
-          WeatherIcons.day_sunny,
-          size: 80,
-        );
-        break;
-      case WeatherCondition.hail:
-      case WeatherCondition.snow:
-      case WeatherCondition.sleet:
-        return BoxedIcon(
-          WeatherIcons.snow,
-          color: Colors.black,
-          size: 80,
-        );
-        break;
-      case WeatherCondition.heavyCloud:
-        return BoxedIcon(
-          WeatherIcons.cloud_up,
-          color: Colors.black,
-          size: 80,
-        );
-        break;
-      case WeatherCondition.heavyRain:
-      case WeatherCondition.lightRain:
-      case WeatherCondition.showers:
-        return BoxedIcon(
-          WeatherIcons.rain,
-          size: 80,
-          color: Colors.black,
-        );
-        break;
-      case WeatherCondition.thunderstorm:
-        return BoxedIcon(
-          WeatherIcons.thunderstorm,
-          color: Colors.black,
-          size: 80,
-        );
-        break;
-      case WeatherCondition.unknown:
-        return BoxedIcon(
-          WeatherIcons.sunset,
-          color: Colors.black,
-          size: 80,
-        );
-        break;
-    }
-    return BoxedIcon(
-      WeatherIcons.sunset,
-      color: Colors.black,
-      size: 80,
     );
   }
 }
