@@ -22,7 +22,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.blue[100],
+      backgroundColor: Colors.indigo[100],
       appBar: appBarBuild(context),
       body: Container(child: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
