@@ -11,7 +11,7 @@ import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_state
 import 'package:weather_app/models/location.dart';
 import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/screens/weather_screen/succes_screen/selected_weather.dart';
-import 'package:weather_app/screens/weather_screen/widgets/condition_box_icon.dart';
+import 'package:weather_app/screens/weather_screen/widgets/weather_condition_svg.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 class SuccesScreen extends StatelessWidget {
@@ -69,7 +69,7 @@ class SuccesScreen extends StatelessWidget {
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.4,
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Colors.white.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(20)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -78,15 +78,18 @@ class SuccesScreen extends StatelessWidget {
                                 DateFormat('EEE').format(DateTime.parse(weather
                                     .consolidatedWeather[index]
                                     .applicableDate)),
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Colors.white),
                               ),
                               mapWeatherConditionToIcon(
                                   weatherCondition: weather
                                       .consolidatedWeather[index]
                                       .weatherCondition),
-                              Text(weather.consolidatedWeather[index].maxTemp
-                                      .toStringAsFixed(0) +
-                                  "°")
+                              Text(
+                                weather.consolidatedWeather[index].maxTemp
+                                        .toStringAsFixed(0) +
+                                    "°",
+                                style: TextStyle(color: Colors.white),
+                              )
                             ],
                           ),
                         ),
