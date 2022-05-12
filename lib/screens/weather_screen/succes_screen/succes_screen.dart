@@ -9,10 +9,8 @@ import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_bloc.
 import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_event.dart';
 import 'package:weather_app/blocs/weather_selection_bloc/weather_selection_state.dart';
 import 'package:weather_app/models/location.dart';
-import 'package:weather_app/models/weather.dart';
 import 'package:weather_app/screens/weather_screen/succes_screen/selected_weather.dart';
 import 'package:weather_app/screens/weather_screen/widgets/weather_condition_svg.dart';
-import 'package:weather_icons/weather_icons.dart';
 
 class SuccesScreen extends StatelessWidget {
   final weather, location;
@@ -69,7 +67,7 @@ class SuccesScreen extends StatelessWidget {
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.4,
                           decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.1),
+                              color: Colors.white.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(20)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
